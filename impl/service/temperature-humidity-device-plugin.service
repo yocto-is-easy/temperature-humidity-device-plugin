@@ -1,0 +1,9 @@
+[Unit]
+Description=Temperature/Humidity plugin
+
+[Service]
+ExecStart=/usr/bin/temperature-humidity-device-plugin-service
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
