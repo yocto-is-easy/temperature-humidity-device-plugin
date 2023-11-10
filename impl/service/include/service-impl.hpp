@@ -39,17 +39,22 @@ MIDF_IMPL_FUNC(midf::JsonAsRet, temperature_humidity_device_plugin, get_humidity
 
 MIDF_IMPL_FUNC(midf::JsonAsRet, temperature_humidity_device_plugin, sum, midf::JsonAsParam) (midf::JsonAsParam param) {
     int x, y;
+    midf::JsonAsRet ret;
+
     try{
-        x = param.get()["x"];
-        y = param.get()["y"];
+        std::string x_str = param.get()["x"];
+        std::string y_str = param.get()["y"];
+
+        x = std::stoi(x_str);
+        y = std::stoi(y_str);
     } catch(const std::exception& e) {
         spdlog::error("sum::get_temperature_humidity: {}", e.what());
-        throw e;
+
+        ret.get()["return"] = "error";
+        return ret;
     }
 
-    midf::JsonAsRet ret;
     ret.get()["return"] = x + y;
-
     return ret;
 }
 
