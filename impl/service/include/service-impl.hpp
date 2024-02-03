@@ -61,7 +61,7 @@ MIDF_IMPL_FUNC(midf::JsonAsRet, temperature_humidity_device_plugin, sum, midf::J
 void start_temperature_humidity_device_plugin_service(std::shared_ptr<TemperatureHumidityService> temperatureHumidityService) {
     m_temperatureHumidityService = temperatureHumidityService;
 
-    plugin_manager::register_plugin("temperature_humidity_device_plugin");
+    plugin_manager::init_plugin("temperature_humidity_device_plugin");
 
     plugin_manager::register_function(
         "temperature_humidity_device_plugin",
